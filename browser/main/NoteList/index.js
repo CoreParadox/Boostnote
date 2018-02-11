@@ -109,6 +109,7 @@ class NoteList extends React.Component {
 
   componentDidUpdate (prevProps) {
     const { location } = this.props
+    ee.emitIpc('tray:update', _.sortBy(this.notes, note => new Date(note.updatedAt).getTime()).reverse().slice(0, 10))
 
     if (this.notes.length > 0 && location.query.key == null) {
       const { router } = this.context
