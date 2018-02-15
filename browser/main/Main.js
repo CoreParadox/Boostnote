@@ -40,6 +40,7 @@ class Main extends React.Component {
     }
 
     this.toggleFullScreen = () => this.handleFullScreenButton()
+    this.probeTrayClose = () => this.handleTrayCloseProbe()
   }
 
   getChildContext () {
@@ -164,10 +165,12 @@ class Main extends React.Component {
       })
 
     eventEmitter.on('editor:fullscreen', this.toggleFullScreen)
+    eventEmitter.on('tray:probe-close', this.probeTrayClose)
   }
 
   componentWillUnmount () {
     eventEmitter.off('editor:fullscreen', this.toggleFullScreen)
+    eventEmitter.off('tray:probe-close', this.probeTrayClose)
   }
 
   handleLeftSlideMouseDown (e) {
@@ -256,6 +259,14 @@ class Main extends React.Component {
         this.showLeftLists(noteDetail, noteList, mainBody)
       }
     })
+  }
+
+  handleTrayCloseProbe (e) {
+    const { config } = this.props
+    if (!config.ui.closeToTray) {
+      // console.log('handleTrayClose')
+      eventEmitter.emitIpc('tray:quit')
+    }
   }
 
   hideLeftLists (noteDetail, noteList, mainBody) {

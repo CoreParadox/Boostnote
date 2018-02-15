@@ -22,6 +22,7 @@ export const DEFAULT_CONFIG = {
   },
   ui: {
     theme: 'default',
+    closeToTray: true,
     showCopyNotification: true,
     disableDirectWrite: false,
     defaultNote: 'ALWAYS_ASK' // 'ALWAYS_ASK', 'SNIPPET_NOTE', 'MARKDOWN_NOTE'

@@ -61,6 +61,7 @@ class UiTab extends React.Component {
     const newConfig = {
       ui: {
         theme: this.refs.uiTheme.value,
+        closeToTray: this.refs.closeToTray.checked,
         showCopyNotification: this.refs.showCopyNotification.checked,
         confirmDeletion: this.refs.confirmDeletion.checked,
         disableDirectWrite: this.refs.uiD2w != null
@@ -201,6 +202,17 @@ class UiTab extends React.Component {
             </div>
             : null
           }
+          <div styleName='group-checkBoxSection'>
+            <label>
+              <input onChange={(e) => this.handleUIChange(e)}
+                checked={this.state.config.ui.closeToTray}
+                ref='closeToTray'
+                type='checkbox'
+              />&nbsp;
+              Close main window to tray
+            </label>
+          </div>
+
           <div styleName='group-header2'>Editor</div>
 
           <div styleName='group-section'>
