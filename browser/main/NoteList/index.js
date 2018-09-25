@@ -129,6 +129,8 @@ class NoteList extends React.Component {
     const prevKey = prevProps.location.query.key
     const noteKey = visibleNoteKeys.includes(prevKey) ? prevKey : note && note.key
 
+    ee.emitIpc('tray:update', _.sortBy(this.notes, note => new Date(note.updatedAt).getTime()).reverse().slice(0, 10))
+
     if (note && location.query.key == null) {
       const { router } = this.context
       if (!location.pathname.match(/\/searched/)) this.contextNotes = this.getContextNotes()

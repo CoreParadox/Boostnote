@@ -67,6 +67,7 @@ class UiTab extends React.Component {
       ui: {
         theme: this.refs.uiTheme.value,
         language: this.refs.uiLanguage.value,
+        closeToTray: this.refs.closeToTray.checked,
         showCopyNotification: this.refs.showCopyNotification.checked,
         confirmDeletion: this.refs.confirmDeletion.checked,
         showOnlyRelatedTags: this.refs.showOnlyRelatedTags.checked,
@@ -246,6 +247,17 @@ class UiTab extends React.Component {
             </div>
             : null
           }
+          <div styleName='group-checkBoxSection'>
+            <label>
+              <input onChange={(e) => this.handleUIChange(e)}
+                checked={this.state.config.ui.closeToTray}
+                ref='closeToTray'
+                type='checkbox'
+              />&nbsp;
+              Close main window to tray
+            </label>
+          </div>
+
           <div styleName='group-header2'>Editor</div>
 
           <div styleName='group-section'>
